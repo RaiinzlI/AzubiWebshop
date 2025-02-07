@@ -1,17 +1,18 @@
 <div id="product-card">
   <img class="product-pic" src={{produkt.bildUrl}} />
   <div id="product-info">
-    <div id="product-stats">
-      <div>
-        <h1 id="product-title">{{produkt.titel}}</h1>
-        <div id="prodcut-describtion">{{produkt.beschreibung}}</div>
-      </div>
-      <p id="prodcut-price">{{produkt.preis}} €</p>
+
+    <h1 id="product-title">{{produkt.titel}}</h1>
+
+    <div class="product-row">
+      <div id="prodcut-describtion">{{produkt.beschreibung}}</div>
+      <div id="product-amount">x123</div>
     </div>
-    <div id="product-interatcion">
+
+    <div class="product-row">
+      <p id="prodcut-price">{{produkt.preis}} €</p>
       <div [hidden]="!setCartsInvisible" class="default-button-pos">
         <button class="defaultCart-button-style" (click)="CartInteraction(1)">
-          
         </button>
       </div>
     </div>
