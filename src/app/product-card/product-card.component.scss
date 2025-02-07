@@ -1,42 +1,74 @@
 #product-card {
   min-width: 300px;
-  max-width: 340px;
+  max-width: 320px;
   width: 320px;
 
   min-height: 450px;
-  max-height: 490px;
+  max-height: 470px;
   height: 470px;
 
-  background-color: #ad1b1b;
+  background-color: #ad1b1b00;
   margin: .5rem;
-  padding: 5px;
 
-  display:flex;
+  display: flex;
   flex-direction: column;
-}
 
-.product-pic {
-  display: block;
-  object-fit: cover;
-  border-radius: 20px 20px 0 0;
-  margin: 0;
-  padding: 0;
+  .product-pic {
+    display: block;
+    object-fit: cover;
 
-  flex: 1;
-}
+    border-radius: 20px 20px 0 0;
+    border-width: 1px 4px 1px 2px; //Left Right Bottom Top
+    border-style: solid;
+    border-color: black;
+    margin: 0;
+    padding: 0;
 
-#product-info {
-  background-color: aqua;
-  
-  border-radius: 0 0 20px 20px;
-  border-bottom: 5px;
-  border-color: rgb(0, 255, 0);
-  border-width: 10px 0px 10px 10px; /* Standard-Rahmendicke */
-  border-style: solid;
-  border-color: black;
+    flex: 1;
+  }
 
-  margin: 0;
-  padding: 0;
+  #product-info {
+    background-color: rgb(61, 61, 61);
 
-  flex: 1;
+    border-radius: 0 0 20px 20px;
+    border-bottom: 5px;
+    border-width: 1px 4px 4px 2px;
+    border-style: solid;
+    border-color: black;
+
+    margin: 0;
+    padding: 0;
+
+    flex: 1;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+
+
+    #product-stats {
+      grid-row: 1 / span 2;
+      margin-left: 10px;
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+
+      #product-title {
+        margin: 0;
+        padding: 0;
+        
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      #product-describtion {
+        margin: 0;
+        padding: 0;
+        max-height: 4rem; /* Oder jede andere gewünschte Höhe */
+        overflow-y: auto; /* Ermöglicht das Scrollen bei zu viel Text */
+      }
+    }
+  }
 }
