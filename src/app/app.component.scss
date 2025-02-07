@@ -1,0 +1,56 @@
+main {
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "navigation produkte warenkorb";
+  grid-template-rows: 40px 1fr;
+  grid-template-columns: 120px 1fr 100px;
+
+  #header {
+    grid-area: header;
+  }
+
+  #navigation {
+    grid-area: navigation;
+    display: flex;
+    background-color: #cccccc;
+    align-content: center;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    .nav_profile{
+      gap: 10px;
+      background-color: #797979;
+      border: 3px solid #414141;
+      border-radius: 0px;
+      max-height: 100px;
+      min-height: 100px;;
+    }
+
+    .nav_logoutButton
+    {
+      background-color: #797979;
+      border: 3px solid #414141;
+      border-radius: 0px;
+      max-height: 100px;
+      min-height: 100px;
+
+      &:hover {
+        background-color: #4646463d;
+      }
+    }
+  }
+
+  #produkte {
+    grid-area: produkte;
+
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  #warenkorb {
+    grid-area: warenkorb;
+  }
+}

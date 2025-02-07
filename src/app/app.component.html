@@ -1,0 +1,16 @@
+<main>
+  <div id="header"></div>
+  <div id="navigation">
+    <div class="nav_profile">
+      <button>Profile</button>
+    </div>
+    <div>Einkäufe</div>
+    <div class="nav_logoutButton">LogoutButton</div>
+  </div>
+  <div id="produkte">
+    @for(product of products; track $index) {
+    <app-product-card [produkt]="product" />
+    }
+  </div>
+  <div id="warenkorb">Warenkorb</div>
+</main>
