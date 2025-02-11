@@ -5,10 +5,13 @@ main {
     "header header header"
     "navigation produkte warenkorb";
   grid-template-rows: 40px 1fr;
-  grid-template-columns: 120px 1fr 100px;
+  grid-template-columns: 180px 1fr 227px;
+  background-color: #414141;
 
   #header {
     grid-area: header;
+    
+    background-color: rgb(52, 83, 83);
   }
 
   #navigation {
@@ -26,7 +29,13 @@ main {
       border: 3px solid #414141;
       border-radius: 0px;
       max-height: 100px;
-      min-height: 100px;;
+      min-height: 100px;
+
+      #user-icon{
+      max-height: 80px;
+      min-height: 80px;
+
+      }
     }
 
     .nav_logoutButton
@@ -48,9 +57,12 @@ main {
 
     display: flex;
     flex-wrap: wrap;
+    overflow-y: auto;
+    scrollbar-width: none;
   }
 
   #warenkorb {
     grid-area: warenkorb;
+    background-color: rgb(52, 83, 83);
   }
 }

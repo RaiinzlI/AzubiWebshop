@@ -1,20 +1,22 @@
 <div id="product-card">
-  <img class="product-pic" src={{produkt.bildUrl}} />
+  <img id="product-pic" src={{produkt.bildUrl}} />
   <div id="product-info">
-
     <h1 id="product-title">{{produkt.titel}}</h1>
-
-    <div class="product-row">
-      <div id="prodcut-describtion">{{produkt.beschreibung}}</div>
-      <div id="product-amount">x123</div>
-    </div>
-
-    <div class="product-row">
-      <p id="prodcut-price">{{produkt.preis}} €</p>
-      <div [hidden]="!setCartsInvisible" class="default-button-pos">
+    <div id="product-description">{{produkt.beschreibung}}</div>
+    <div [hidden]="setCartsInvisible" id="product-amount">x{{itemAmount}}</div>
+      <div [hidden]="!setCartsInvisible" id="product-singelCartButton">
         <button class="defaultCart-button-style" (click)="CartInteraction(1)">
+          <img src="cart.png" alt="" class="defaultCart-icon" />
         </button>
-      </div>
     </div>
+    <div id="product-doubleCartButtons" [hidden]="setCartsInvisible">
+      <button class="doubleCart-button-style" (click)="CartInteraction(1)">
+        <img src="addCart.png" alt="" class="doubleCart-icon" />
+      </button>
+      <button class="doubleCart-button-style" (click)="CartInteraction(-1)">
+        <img src="removeCart.png" alt="" class="doubleCart-icon" />
+      </button>
+    </div>
+    <p id="product-price">{{produkt.preis}} €</p>
   </div>
 </div>
