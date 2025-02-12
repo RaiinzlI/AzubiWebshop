@@ -1,17 +1,15 @@
 main {
-  height: 100%;
   display: grid;
   grid-template-areas:
     "header header header"
-    "navigation produkte warenkorb";
+    "navigation produkte cart";
   grid-template-rows: 40px 1fr;
-  grid-template-columns: 180px 1fr 227px;
-  background-color: #414141;
+  grid-template-columns: 240px 1fr auto;
 
   #header {
     grid-area: header;
-    
-    background-color: rgb(52, 83, 83);
+
+    background-color: rgb(53, 107, 133);
   }
 
   #navigation {
@@ -23,7 +21,7 @@ main {
     flex-wrap: nowrap;
     justify-content: space-between;
 
-    .nav_profile{
+    .nav_profile {
       gap: 10px;
       background-color: #797979;
       border: 3px solid #414141;
@@ -31,15 +29,14 @@ main {
       max-height: 100px;
       min-height: 100px;
 
-      #user-icon{
-      max-height: 80px;
-      min-height: 80px;
+      #user-icon {
+        max-height: 80px;
+        min-height: 80px;
 
       }
     }
 
-    .nav_logoutButton
-    {
+    .nav_logoutButton {
       background-color: #797979;
       border: 3px solid #414141;
       border-radius: 0px;
@@ -54,6 +51,7 @@ main {
 
   #produkte {
     grid-area: produkte;
+    height: 100vh;
 
     display: flex;
     flex-wrap: wrap;
@@ -61,8 +59,41 @@ main {
     scrollbar-width: none;
   }
 
-  #warenkorb {
-    grid-area: warenkorb;
-    background-color: rgb(52, 83, 83);
+  #cart {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    width: 100%;
+
+    transition: width 0.2s ease-in-out;
+    background-color: #414141;
+
+    &.expanded {
+      width: 884px;
+    }
+
+    #cartButton {
+      grid-row: 1;
+      background-color: rgb(30, 106, 112);
+      width: 100%;
+      height: 100px;
+    }
+
+    #cartProductSlices {
+      grid-row: 2;
+
+      display: flex;
+      flex-direction: column;
+
+      overflow-y: auto;
+      scrollbar-width: auto;
+      background-color: rgb(48, 48, 48);
+    }
+
+    #cartTotal {
+      grid-row: 3;
+      background-color: rgb(6, 134, 143);
+      height: 300px;
+    }
   }
 }

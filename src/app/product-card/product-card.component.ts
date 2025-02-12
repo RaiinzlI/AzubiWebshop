@@ -1,19 +1,7 @@
 import { DecimalPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
-import { NgZone } from '@angular/core';
 import { CartService } from '../services/cart.services';
-
-
-
-export interface Produkt {
-  id: number;
-  titel: string;
-  bildUrl: string;
-  beschreibung: string;
-  preis: number;
-}
-
+import { Produkt } from './product-interface';
 @Component({
   selector: 'app-product-card',
   imports: [DecimalPipe],
@@ -29,12 +17,22 @@ export class ProductCardComponent {
   setCartsInvisible: boolean = true;
   itemAmount: number = 0;
 
-  CartInteraction(number: number): void {
-    this.itemAmount += number;
+  AddToCart(): void {
+    this.cartService.AddToCart(this.produkt);
+    this.UpdateCart();
+  }
+
+  RemoveFromCart(): void {
+    this.cartService.RemoveFromCart(this.produkt);
+    this.UpdateCart();
+  }
+
+  UpdateCart(): void {
+    this.itemAmount = this.cartService.GetProductAmount(this.produkt);
   
-    if(this.itemAmount <= 0)
-      this.setCartsInvisible = true;
-    else
+    if(this.itemAmount >= 0)
       this.setCartsInvisible = false;
+    else
+      this.setCartsInvisible = true;
   }
 }

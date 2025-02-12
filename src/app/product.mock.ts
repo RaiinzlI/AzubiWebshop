@@ -1,4 +1,4 @@
-import { Produkt } from './product-card/product-card.component';
+import { Produkt } from './product-card/product-interface';
 
 export const productMock: Produkt[] = [
   {

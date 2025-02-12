@@ -5,15 +5,15 @@
     <div id="product-description">{{produkt.beschreibung}}</div>
     <div [hidden]="setCartsInvisible" id="product-amount">x{{itemAmount}}</div>
       <div [hidden]="!setCartsInvisible" id="product-singelCartButton">
-        <button class="defaultCart-button-style" (click)="CartInteraction(1)">
+        <button class="defaultCart-button-style" (click)="AddToCart()">
           <img src="cart.png" alt="" class="defaultCart-icon" />
         </button>
     </div>
     <div id="product-doubleCartButtons" [hidden]="setCartsInvisible">
-      <button class="doubleCart-button-style" (click)="CartInteraction(1)">
+      <button class="doubleCart-button-style" (click)="AddToCart()">
         <img src="addCart.png" alt="" class="doubleCart-icon" />
       </button>
-      <button class="doubleCart-button-style" (click)="CartInteraction(-1)">
+      <button class="doubleCart-button-style" (click)="RemoveFromCart()">
         <img src="removeCart.png" alt="" class="doubleCart-icon" />
       </button>
     </div>

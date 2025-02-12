@@ -10,9 +10,21 @@
     <div class="nav_logoutButton">LogoutButton</div>
   </div>
   <div id="produkte">
-    @for(product of products; track $index) {
+    @for(product of allProducts; track $index) {
     <app-product-card [produkt]="product" />
     }
   </div>
-  <div id="warenkorb">Warenkorb</div>
+  <div id="cart" [class.expanded]="isExpanded">
+    <button id="cartButton" (click)="toggleSidebar()">Warenkorb</button>
+    <div id="cartProductSlices">
+      @for(product of cartProducts; track $index) {
+        <app-cart-product-slice [produkt]="product" />
+        }
+    </div>
+    <div id="cartTotal">Gesamt: Nur ein platzhalter €</div>	
+  </div>
 </main>
+
+
+
+
