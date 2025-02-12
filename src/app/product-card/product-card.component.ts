@@ -2,6 +2,7 @@ import { DecimalPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { NgZone } from '@angular/core';
+import { CartService } from '../services/cart.services';
 
 
 
@@ -22,7 +23,8 @@ export interface Produkt {
 export class ProductCardComponent {
   @Input() produkt!: Produkt;
 
-  constructor(private cdRef: ChangeDetectorRef, private ngZone: NgZone) { }
+  constructor(
+    private cartService: CartService) { }
 
   setCartsInvisible: boolean = true;
   itemAmount: number = 0;
