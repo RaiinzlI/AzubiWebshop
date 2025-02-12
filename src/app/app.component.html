@@ -16,7 +16,7 @@
   </div>
   <div id="cart" [class.expanded]="isExpanded">
     <button id="cartButton" (click)="toggleSidebar()">Warenkorb</button>
-    <div id="cartProductSlices">
+    <div id="cartProductSlices" *ngIf="isExpanded">
       @for(product of cartProducts; track $index) {
         <app-cart-product-slice [produkt]="product" />
         }

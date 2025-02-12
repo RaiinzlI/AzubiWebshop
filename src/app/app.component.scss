@@ -4,18 +4,20 @@ main {
     "header header header"
     "navigation produkte cart";
   grid-template-rows: 40px 1fr;
-  grid-template-columns: 240px 1fr auto;
+  grid-template-columns: 213px 1fr auto;
+
+  height: 100vh;
 
   #header {
     grid-area: header;
 
-    background-color: rgb(53, 107, 133);
+    background-color:#4E5457;
   }
 
   #navigation {
     grid-area: navigation;
     display: flex;
-    background-color: #cccccc;
+    background-color: #ECEBF3;
     align-content: center;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -51,30 +53,38 @@ main {
 
   #produkte {
     grid-area: produkte;
-    height: 100vh;
+    height: auto;
 
     display: flex;
     flex-wrap: wrap;
     overflow-y: auto;
     scrollbar-width: none;
+
+    border-width: 3px ;
+    border-style: solid;
+    border-color: #4E5457;
+
+    background-color: #E4E4EB;
   }
 
   #cart {
     display: grid;
     grid-template-rows: auto 1fr auto;
-    height: 100vh;
-    width: 100%;
 
-    transition: width 0.2s ease-in-out;
-    background-color: #414141;
+    height: auto;
+    width: 207px;
+
+    transition: width 0.07s ease-in-out;
+    background-color: 4E5457;
+    overflow: hidden;
 
     &.expanded {
-      width: 884px;
+      width: 918px;
     }
 
     #cartButton {
       grid-row: 1;
-      background-color: rgb(30, 106, 112);
+      background-color: #E4E4EB;
       width: 100%;
       height: 100px;
     }
@@ -87,12 +97,14 @@ main {
 
       overflow-y: auto;
       scrollbar-width: auto;
-      background-color: rgb(48, 48, 48);
+      background-color: #E4E4EB;
+
+
     }
 
     #cartTotal {
       grid-row: 3;
-      background-color: rgb(6, 134, 143);
+      background-color: #4B4B4B;
       height: 300px;
     }
   }

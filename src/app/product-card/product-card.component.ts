@@ -2,6 +2,7 @@ import { DecimalPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CartService } from '../services/cart.services';
 import { Produkt } from './product-interface';
+import { ElementSchemaRegistry } from '@angular/compiler';
 @Component({
   selector: 'app-product-card',
   imports: [DecimalPipe],
@@ -29,8 +30,9 @@ export class ProductCardComponent {
 
   UpdateCart(): void {
     this.itemAmount = this.cartService.GetProductAmount(this.produkt);
-  
-    if(this.itemAmount >= 0)
+    console.log(this.itemAmount);
+
+    if (this.itemAmount >= 0)
       this.setCartsInvisible = false;
     else
       this.setCartsInvisible = true;

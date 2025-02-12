@@ -14,15 +14,40 @@
 
     overflow: hidden;
 
+    position: relative;
     display: flex;
     flex-direction: row;
 
-    background-color: rgb(46, 46, 46);
+    background-color: rgb(61, 61, 61);
 
     #product-pic {
         max-height: 150px;
         object-fit: cover;
     }
+
+    .remove-button {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        width: 45px;
+        height: 45px;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: transparent;
+
+        border: none;
+        cursor: pointer;
+        z-index: 10;
+
+        .delete-pic {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
 
     #product-info {
         width: 100%;
@@ -43,10 +68,59 @@
         #product-price {
             font-size: 1vw;
 
+            justify-self: left;
+            align-self: center;
+
+            margin: 0 0 0 10px;
+            grid-column: 1;
+            grid-row: 3;
+
+            color: #4CAF50;
+        }
+
+        #product-amount {
+            font-size: 1vw;
+
             justify-self: right;
-            margin: 10px 10px 0 0;
+            align-self: center;
+
+            margin: 0 10px 0 0;
             grid-column: 3;
-            grid-row: 1;
+            grid-row: 2;
+
+            color: #4CAF50;
+        }
+
+        #add-button-pos{
+            grid-row: 3;
+            grid-column: 2;
+        }
+        
+        #remove-button-pos{
+            grid-row: 3;
+            grid-column: 3;
+        }
+
+        .cart-button-style {
+            margin-right: 10px;
+            background-color: rgb(189, 189, 189);
+            border: 2px solid #d1d1d1;
+
+            &:hover {
+                background-color: #a0a0a03d;
+            }
+
+            min-width: 20px;
+            min-height: 20px;
+            max-width: 80px;
+            max-height: 80px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .doubleCart-icon {
+            max-width: 2rem;
+            max-height: 2rem;
         }
     }
 }

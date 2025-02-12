@@ -20,17 +20,19 @@ export class CartService {
       this.productAmount.push(1);
     }
 
+    console.clear();
     console.log("Amount of Current product:" + this.productAmount[this.cartedProducts.indexOf(product)]);
     console.log("Amount of products in cart:" + this.cartedProducts.length);
   }
 
   RemoveFromCart(product: Produkt): void {
+    if (this.productAmount[this.cartedProducts.indexOf(product)] == 1) {
+      this.productAmount.splice(this.cartedProducts.indexOf(product), 1);
+      this.cartedProducts.splice(this.cartedProducts.indexOf(product), 1);
+    }
+    else {
       this.productAmount[this.cartedProducts.indexOf(product)]--;
-
-      if(this.productAmount[this.cartedProducts.indexOf(product)] <= 0) {
-        this.cartedProducts.splice(this.cartedProducts.indexOf(product), 1);
-      }
-
+    }
   }
 
   GetProductAmount(product: Produkt): number {

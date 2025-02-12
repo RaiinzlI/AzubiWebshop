@@ -1,11 +1,12 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';  
 import { CartService } from '../services/cart.services';
 import { Produkt } from '../product-card/product-interface';
 
 @Component({
   selector: 'app-cart-product-slice',
-  imports: [],
+  standalone: true,  
+  imports: [CommonModule],
   templateUrl: './cart-product-slice.component.html',
   styleUrl: './cart-product-slice.component.scss'
 })
@@ -15,25 +16,16 @@ export class CartProductSliceComponent {
   constructor(
     private cartService: CartService) { }
 
-  setCartsInvisible: boolean = true;
+  isRemoving: boolean = true;
   itemAmount: number = 0;
 
- AddToCart(): void {
-  //   this.cartService.AddToCart(this.produkt, this.itemAmount);
-  //   this.CartInteraction(1);
- }
-
-  RemoveFromCart(): void {
-  //   this.cartService.RemoveFromCart(this.produkt, this.itemAmount);
-  //   this.CartInteraction(-1);
+  AddToCart(): void {
+    this.cartService.AddToCart(this.produkt);
+    //this.UpdateCart();
   }
 
-  CartInteraction(number: number): void {
-    this.itemAmount += number;
-  
-    if(this.itemAmount <= 0)
-      this.setCartsInvisible = true;
-    else
-      this.setCartsInvisible = false;
+  RemoveFromCart(): void {
+    this.cartService.RemoveFromCart(this.produkt);
+   // this.UpdateCart();
   }
 }
