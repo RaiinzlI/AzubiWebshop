@@ -2,24 +2,22 @@
 
     <img id="product-pic" src="{{produkt.bildUrl}}" alt="" />
 
-    <button class="remove-button" *ngIf="isRemoving" >
-        <img class="delete-pic" src="cancelation.png" alt="" />
-    </button>
-
-    <button class="remove-button" *ngIf="!isRemoving" >
-        <img class="delete-pic" src="check-mark.png" alt="" />
-    </button>
-
     <div id="product-info">
         <div id="product-name">{{produkt.titel}}</div>
         <div id="product-price">{{produkt.preis}} €</div>
-        <div id="product-amount">x{{itemAmount}}</div>
 
-        <button class="cart-button-style" id="add-button-pos" (click)="AddToCart()">
-            <img src="addCart.png" alt="" class="doubleCart-icon" />
-          </button>
-          <button class="cart-button-style" id="remove-button-pos" (click)="RemoveFromCart()">
-            <img src="removeCart.png" alt="" class="doubleCart-icon" />
-          </button>
+        <button id="delete-btn-pos" class="cart-button-style" (click)="DeleteFromCart()">
+            <img src="w-recycle-bin.png" alt="" class="doubleCart-icon" />
+        </button>        
+
+        <div id="amount-box">
+            <div id="product-amount">{{itemAmount}}</div>
+            <button id="add-btn-pos" class="cart-button-style" (click)="AddToCart()">
+                <img src="w-add-button.png" alt="" class="doubleCart-icon" />
+            </button>
+            <button id="remove-btn-pos" class="cart-button-style" (click)="RemoveFromCart()">
+                <img src="w-remove-button.png" alt="" class="doubleCart-icon" />
+            </button>
+        </div>
     </div>
 </div>

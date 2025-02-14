@@ -3,6 +3,7 @@ import { Component, Inject, Injectable, Input } from '@angular/core';
 import { ChangeDetectorRef } from '@angular/core';
 import { NgZone } from '@angular/core';
 import { Produkt } from '../product-card/product-interface';
+import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
@@ -12,6 +13,11 @@ export class CartService {
   cartedProducts: Produkt[] = [];
   private productAmount: number[] = [];
 
+  DeleteFromCart(product: Produkt): void {
+    this.productAmount.splice(this.cartedProducts.indexOf(product), 1);
+    this.cartedProducts.splice(this.cartedProducts.indexOf(product), 1);
+  }
+
   AddToCart(product: Produkt): void {
     if (this.cartedProducts.includes(product)) {
       this.productAmount[this.cartedProducts.indexOf(product)]++;
@@ -19,10 +25,6 @@ export class CartService {
       this.cartedProducts.push(product);
       this.productAmount.push(1);
     }
-
-    console.clear();
-    console.log("Amount of Current product:" + this.productAmount[this.cartedProducts.indexOf(product)]);
-    console.log("Amount of products in cart:" + this.cartedProducts.length);
   }
 
   RemoveFromCart(product: Produkt): void {
@@ -39,7 +41,4 @@ export class CartService {
     return this.productAmount[this.cartedProducts.indexOf(product)];
   }
 
-  GetCartedProducts(): Produkt[] {
-    return this.cartedProducts;
-  }
 }

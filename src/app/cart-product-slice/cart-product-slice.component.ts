@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { CartService } from '../services/cart.services';
 import { Produkt } from '../product-card/product-interface';
 
+
 @Component({
   selector: 'app-cart-product-slice',
   standalone: true,  
@@ -19,13 +20,27 @@ export class CartProductSliceComponent {
   isRemoving: boolean = true;
   itemAmount: number = 0;
 
+  ngOnInit() {
+    this.UpdateCart();
+    //wird nicht geupdated wenn man in einer produkt card wert ändert
+  }
+
+  DeleteFromCart(): void {
+    this.cartService.DeleteFromCart(this.produkt);
+    this.UpdateCart();
+  }
+
   AddToCart(): void {
     this.cartService.AddToCart(this.produkt);
-    //this.UpdateCart();
+    this.UpdateCart();
   }
 
   RemoveFromCart(): void {
     this.cartService.RemoveFromCart(this.produkt);
-   // this.UpdateCart();
+    this.UpdateCart();
+  }
+
+  UpdateCart(): void{
+    this.itemAmount = this.cartService.GetProductAmount(this.produkt);
   }
 }

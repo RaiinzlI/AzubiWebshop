@@ -19,33 +19,11 @@
     flex-direction: row;
 
     background-color: rgb(61, 61, 61);
+    color: white;
 
     #product-pic {
         max-height: 150px;
         object-fit: cover;
-    }
-
-    .remove-button {
-        position: absolute;
-        top: -5px;
-        right: -5px;
-        width: 45px;
-        height: 45px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: transparent;
-
-        border: none;
-        cursor: pointer;
-        z-index: 10;
-
-        .delete-pic {
-            height: 100%;
-            width: 100%;
-            object-fit: contain;
-        }
     }
 
 
@@ -53,9 +31,8 @@
         width: 100%;
 
         display: grid;
-        grid-template-columns: auto auto auto;
+        grid-template-columns: auto 1fr;
         grid-template-rows: auto auto auto;
-        background-color: rgba(115, 146, 146, 0.425);
 
         #product-name {
             font-size: 1.2vw;
@@ -66,61 +43,70 @@
         }
 
         #product-price {
-            font-size: 1vw;
+            font-size: 1.2vw;
+            margin: 10px 0 0 0;
 
-            justify-self: left;
-            align-self: center;
+            grid-column: 3;
+            grid-row: 1;
 
-            margin: 0 0 0 10px;
+            color: #4CAF50;
+        }
+
+        #product-remove{
             grid-column: 1;
             grid-row: 3;
-
-            color: #4CAF50;
         }
 
-        #product-amount {
-            font-size: 1vw;
-
-            justify-self: right;
-            align-self: center;
-
-            margin: 0 10px 0 0;
-            grid-column: 3;
-            grid-row: 2;
-
-            color: #4CAF50;
-        }
-
-        #add-button-pos{
+        #delete-btn-pos{
+            grid-column: 1;
             grid-row: 3;
-            grid-column: 2;
         }
-        
-        #remove-button-pos{
+
+
+        #amount-box {
             grid-row: 3;
             grid-column: 3;
+
+            display:grid;
+            grid-template-columns: 1fr 1fr 1fr;  
+
+            #product-amount {
+                grid-column: 2;
+                grid-row: 1;
+
+                font-size: 40px;
+                justify-self: center;
+                align-self: center;
+            }
+
+            #add-btn-pos{
+                grid-column: 3;
+                grid-row: 1;
+            }
+
+            #remove-btn-pos{
+                grid-column: 1;
+                grid-row: 1;
+            }
         }
 
         .cart-button-style {
-            margin-right: 10px;
-            background-color: rgb(189, 189, 189);
-            border: 2px solid #d1d1d1;
+            background-color: transparent;
+            border: 0;
+        
 
-            &:hover {
-                background-color: #a0a0a03d;
-            }
-
+          
             min-width: 20px;
             min-height: 20px;
             max-width: 80px;
             max-height: 80px;
             cursor: pointer;
             border-radius: 5px;
-        }
 
-        .doubleCart-icon {
-            max-width: 2rem;
-            max-height: 2rem;
+            .doubleCart-icon {
+                max-width: 2rem;
+                max-height: 2rem;
+            }
         }
     }
 }
