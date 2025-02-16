@@ -1,19 +1,24 @@
 <main>
   <div id="header"></div>
   <div id="navigation">
-    <div class="nav_profile">
-      <button>
+      <button id="nav-profile">
         <img src="photo.png" alt="" id="user-icon" />
       </button>
-    </div>
-    <div>Einkäufe</div>
-    <div class="nav_logoutButton">LogoutButton</div>
+      <div id="nav-filters">
+          @for(type of  schuhArtenArray.controls; track $index) {
+            <app-product-filter [productType]="type"></app-product-filter>
+            }
+        </div>
+    <div id="nav-historie">Einkäufe</div>
+    <div id="nav-logoutButton">LogoutButton</div>
   </div>
+
   <div id="produkte">
     @for(product of allProducts; track $index) {
     <app-product-card [produkt]="product" />
     }
   </div>
+
   <div id="cart" [class.expanded]="isExpanded">
     <button id="cartButton" (click)="toggleSidebar()">Warenkorb</button>
     <div id="cartProductSlices" *ngIf="isExpanded">
@@ -24,7 +29,3 @@
     <div id="cartTotal">Gesamt: Nur ein platzhalter €</div>	
   </div>
 </main>
-
-
-
-
