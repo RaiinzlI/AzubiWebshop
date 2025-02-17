@@ -29,17 +29,14 @@ export class CartProductSliceComponent {
 
   DeleteFromCart(): void {
     this.cartService.DeleteFromCart(this.produkt);
-    this.UpdateCart();
   }
 
   AddToCart(): void {
     this.cartService.AddToCart(this.produkt);
-    this.UpdateCart();
   }
 
   RemoveFromCart(): void {
     this.cartService.RemoveFromCart(this.produkt);
-    this.itemAmount = this.cartService.GetProductAmount(this.produkt);
   }
 
   UpdateCart(): void {

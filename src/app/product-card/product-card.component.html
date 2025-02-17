@@ -10,11 +10,11 @@
         </button>
     </div>
     <div id="product-doubleCartButtons" [hidden]="setCartsInvisible">
-      <button class="doubleCart-button-style" (click)="RemoveFromCart()">
-        <img src="w-remove-button.png" alt="" class="doubleCart-icon" />
+      <button class="doubleCart-button-style" >
+        <img src="w-remove-button.png" alt="" class="doubleCart-icon" (click)="RemoveFromCart()" />
       </button>
-      <button class="doubleCart-button-style" (click)="AddToCart()">
-        <img src="w-add-button.png" alt="" class="doubleCart-icon" />
+      <button class="doubleCart-button-style" >
+        <img src="w-add-button.png" alt="" class="doubleCart-icon" (click)="AddToCart()" />
       </button>
     </div>
     <p id="product-price">{{produkt.preis}} €</p>

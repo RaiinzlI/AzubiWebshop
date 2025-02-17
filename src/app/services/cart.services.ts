@@ -1,21 +1,24 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, Inject, Injectable, Input } from '@angular/core';
-import { ChangeDetectorRef } from '@angular/core';
-import { NgZone } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { Produkt } from '../product-card/product-interface';
-import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
-
-  constructor() { }
+  private productUpdateSubject = new BehaviorSubject<Produkt | null>(null);   //
+  productUpdate$ = this.productUpdateSubject.asObservable();                  //Oberable welches die App Component überwacht
 
   cartedProducts: Produkt[] = [];
   private productAmount: number[] = [];
 
+  constructor() { }
+
   DeleteFromCart(product: Produkt): void {
-    this.productAmount.splice(this.cartedProducts.indexOf(product), 1);
-    this.cartedProducts.splice(this.cartedProducts.indexOf(product), 1);
+    const index = this.cartedProducts.indexOf(product);
+    if (index !== -1) {
+      this.productAmount.splice(index, 1);
+      this.cartedProducts.splice(index, 1);
+      this.NotifyProductUpdate(product);
+    }
   }
 
   AddToCart(product: Produkt): void {
@@ -25,18 +28,26 @@ export class CartService {
       this.cartedProducts.push(product);
       this.productAmount.push(1);
     }
+    this.NotifyProductUpdate(product);
   }
 
   RemoveFromCart(product: Produkt): void {
-    if (this.productAmount[this.cartedProducts.indexOf(product)] == 1) {
-     this.DeleteFromCart(product);
-    }
-    else {
-      this.productAmount[this.cartedProducts.indexOf(product)]--;
+    const index = this.cartedProducts.indexOf(product);
+    if (this.productAmount[index] === 1) { //Wenn ein produkt übrig => aus listen löschen
+      console.log("lösche das produkt") //DEBUG
+      this.DeleteFromCart(product);
+    } else {
+      console.log("entferne ein produkt") //DEBUG
+      this.productAmount[index]--;
+      this.NotifyProductUpdate(product);
     }
   }
 
   GetProductAmount(product: Produkt): number {
     return this.productAmount[this.cartedProducts.indexOf(product)];
+  }
+
+  private NotifyProductUpdate(product: Produkt): void {
+    this.productUpdateSubject.next(product);
   }
 }

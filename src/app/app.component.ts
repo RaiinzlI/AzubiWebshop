@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChildren, QueryList, OnInit } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { Produkt, ProductType } from './product-card/product-interface';
@@ -14,12 +14,13 @@ import { FormBuilder, FormArray } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent, CartProductSliceComponent, ],
+  imports: [CommonModule, ProductCardComponent, CartProductSliceComponent,],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-
+  @ViewChildren(CartProductSliceComponent) productSliceComponents!: QueryList<CartProductSliceComponent>;
+  @ViewChildren(ProductCardComponent) productCardComponents!: QueryList<ProductCardComponent>;
   title = 'azubi-webshop';
 
   allProducts: Produkt[] = productMock;
@@ -27,16 +28,6 @@ export class AppComponent {
 
   totalMoneyAmount: number = 0;
 
-  //selectedFilter: ProductType = ProductType.sportSneaker;
-  // productTypes = Object.values(ProductType);
-
-  // formBuilder: FormBuilder = inject(FormBuilder);
-
-  // form = this.formBuilder.group({
-  //   schuhArten: this.formBuilder.array([])
-  // });
-
-  // get schuhArtenArray(): FormArray { return this.form.controls.schuhArten as FormArray; }
 
   cartService: CartService = inject(CartService);
 
@@ -44,23 +35,37 @@ export class AppComponent {
 
   ngOnInit() {
     this.cartProducts = this.cartService.cartedProducts;
-
-    // this.productTypes.forEach(prodType => {
-    //   const ProduktArt = (this.formBuilder.group({ 
-    //     checkbox: []
-    //   }));
-
-    //   this.schuhArtenArray.push(ProduktArt)});
+      this.cartService.productUpdate$.subscribe((product) => {
+        if (product) {
+          this.UpdateProductComponents(product);
+        }
+      });
   }
 
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
   }
 
-  CalculateTotalMoney(): void{
+  CalculateTotalMoney(): void {
     this.totalMoneyAmount = 0;
     this.cartProducts.forEach(product => {
       this.totalMoneyAmount += this.cartService.GetProductAmount(product) * product.preis;
     });
+  }
+
+  UpdateProductComponents(product: Produkt): void {
+    const productSliceComp = this.productSliceComponents.find(comp => comp.produkt.id === product.id);
+    const productCardComp = this.productCardComponents.find(comp => comp.produkt.id === product.id);
+    if (productSliceComp) {
+      productSliceComp.UpdateCart();
+    } else {
+      console.log(`Produkt mit ID ${product.id} nicht gefunden.`);
+    }
+
+    if (productCardComp) {
+      productCardComp.UpdateCart();
+    } else {
+      console.log(`Produkt mit ID ${product.id} nicht gefunden.`);
+    }
   }
 }

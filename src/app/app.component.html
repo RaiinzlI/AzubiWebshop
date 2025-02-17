@@ -14,7 +14,7 @@
 
   <div id="produkte">
 
-    <button id="cart-button" (click)="toggleSidebar()" [hidden]="isExpanded">
+    <button id="open-cart-button" (click)="toggleSidebar()" [hidden]="isExpanded">
       <img src="cart.png" alt="" id="cart-icon" />
     </button>
 
@@ -25,7 +25,7 @@
 
 
   <div id="cart" [class.expanded]="isExpanded">
-    <button id="cartButton" (click)="toggleSidebar()">Warenkorb schließen</button>
+    <button id="close-cart-button" (click)="toggleSidebar()">Warenkorb schließen</button>
     <div id="cartProductSlices" *ngIf="isExpanded">
       @for(product of cartProducts; track $index) {
       <app-cart-product-slice [produkt]="product" />
