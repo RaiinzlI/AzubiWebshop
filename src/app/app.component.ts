@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { Produkt, ProductType } from './product-card/product-interface';
 import { productMock } from './product.mock';
@@ -14,7 +14,7 @@ import { FormBuilder, FormArray } from '@angular/forms';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent, CartProductSliceComponent, ProductFilterComponent],
+  imports: [CommonModule, ProductCardComponent, CartProductSliceComponent, ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
@@ -25,17 +25,18 @@ export class AppComponent {
   allProducts: Produkt[] = productMock;
   cartProducts: Produkt[] = [];
 
+  totalMoneyAmount: number = 0;
+
   //selectedFilter: ProductType = ProductType.sportSneaker;
-  productTypes = Object.values(ProductType);
+  // productTypes = Object.values(ProductType);
 
-  formBuilder: FormBuilder = inject(FormBuilder);
+  // formBuilder: FormBuilder = inject(FormBuilder);
 
-  form = this.formBuilder.group({
-    schuhArten: this.formBuilder.array([])
-  });
+  // form = this.formBuilder.group({
+  //   schuhArten: this.formBuilder.array([])
+  // });
 
-  get schuhArtenArray(): FormArray { return this.form.controls.schuhArten as FormArray; }
-
+  // get schuhArtenArray(): FormArray { return this.form.controls.schuhArten as FormArray; }
 
   cartService: CartService = inject(CartService);
 
@@ -43,15 +44,23 @@ export class AppComponent {
 
   ngOnInit() {
     this.cartProducts = this.cartService.cartedProducts;
-    this.productTypes.forEach(prodType => {
-      const ProduktArt = (this.formBuilder.group({ 
-        checkbox: []
-      }));
 
-      this.schuhArtenArray.push(ProduktArt)});
+    // this.productTypes.forEach(prodType => {
+    //   const ProduktArt = (this.formBuilder.group({ 
+    //     checkbox: []
+    //   }));
+
+    //   this.schuhArtenArray.push(ProduktArt)});
   }
 
   toggleSidebar() {
     this.isExpanded = !this.isExpanded;
+  }
+
+  CalculateTotalMoney(): void{
+    this.totalMoneyAmount = 0;
+    this.cartProducts.forEach(product => {
+      this.totalMoneyAmount += this.cartService.GetProductAmount(product) * product.preis;
+    });
   }
 }

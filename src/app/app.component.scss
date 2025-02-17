@@ -4,27 +4,27 @@ main {
     "header header header"
     "navigation produkte cart";
   grid-template-rows: 40px 1fr;
-  grid-template-columns: 213px 1fr auto;
+  grid-template-columns: 204px 1fr auto; //213px 1fr auto
 
   height: 100vh;
 
   #header {
     grid-area: header;
 
-    background-color: #4E5457;
+    background-color: #414141;
   }
 
   #navigation {
     grid-area: navigation;
 
-    height:100vh;
+    height: auto;
     width: 100%;
 
     display: grid;
     grid-template-rows: 10% auto 10% 10%;
 
     background-color: #ECEBF3;
-   
+
 
     #nav-profile {
       grid-row: 1;
@@ -77,21 +77,72 @@ main {
     border-color: #4E5457;
 
     background-color: #4E5457;
+
+
+    @keyframes pulsatingBorder {
+      0% {
+        border-color: #ac0909;
+        background-color: #ECEBF3;
+      }
+
+      50% {
+        border-color: #4E5457;
+        background-color: #E4E4EB;
+      }
+
+      100% {
+        border-color: #ac0909;
+        background-color: #ECEBF3;
+      }
+    }
+
+    #cart-button {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+
+      margin: 60px 20px 0 0;
+
+      height: 100px;
+      width: 100px;
+
+      background-color: #c5c5ff;
+      border-radius: 30px;
+      border-style: outset;
+      border-width: 5px;
+      border-color: rgb(136, 45, 45);
+
+      animation: pulsatingBorder 5s infinite;
+      z-index: 10;
+
+      #cart-icon {
+        width: 80px;
+        height: 80px;
+      }
+    }
   }
 
   #cart {
+    grid-area: cart;
+
     display: grid;
     grid-template-rows: auto 1fr auto;
 
     height: auto;
-    width: 207px;
+    width: 0px;
 
     transition: width 0.07s ease-in-out;
-    background-color: 4E5457;
     overflow: hidden;
 
+    border-width: 0 0 0 0;
+    border-style: solid;
+    border-color: #202020;
+
+    background-color: #6e767a;
+
     &.expanded {
-      width: 918px;
+      width: 667px;
+      border-width: 0 0 0 5px;
     }
 
     #cartButton {
@@ -109,13 +160,38 @@ main {
 
       overflow-y: auto;
       scrollbar-width: auto;
-      background-color: #E4E4EB;
+      background-color: transparent;
+
+      scrollbar-width: none;
+
+      align-items: center;
     }
 
-    #cartTotal {
+    #cartInfo {
       grid-row: 3;
-      background-color: #4B4B4B;
-      height: 300px;
+  
+      #cartLine{
+        border-width: 1px;
+        border-radius: 50px;
+      
+        margin-right: 20px;
+        margin-left: 20px;
+        margin-bottom: 10px;
+        margin-top: 14px;
+
+        border-style: solid;
+
+        border-color: #202020;
+      }
+
+      #cartTotal {
+        margin-right: 20px;
+        justify-self: right;
+        font-size: 30px;
+        height: 300px;
+
+        color: white;
+      }
     }
   }
 }

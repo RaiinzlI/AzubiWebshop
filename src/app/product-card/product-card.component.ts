@@ -2,9 +2,10 @@ import { DecimalPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CartService } from '../services/cart.services';
 import { Produkt } from './product-interface';
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-product-card',
-  imports: [DecimalPipe],
+  imports: [],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
@@ -12,7 +13,8 @@ export class ProductCardComponent {
   @Input() produkt!: Produkt;
 
   constructor(
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private appComponent: AppComponent ) { }
 
   setCartsInvisible: boolean = true;
   itemAmount: number = 0;
@@ -29,6 +31,8 @@ export class ProductCardComponent {
 
   UpdateCart(): void {
     this.itemAmount = this.cartService.GetProductAmount(this.produkt);
+    this.appComponent.CalculateTotalMoney();
+
 
     if (this.itemAmount >= 0)
       this.setCartsInvisible = false;

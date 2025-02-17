@@ -29,8 +29,7 @@ export class CartService {
 
   RemoveFromCart(product: Produkt): void {
     if (this.productAmount[this.cartedProducts.indexOf(product)] == 1) {
-      this.productAmount.splice(this.cartedProducts.indexOf(product), 1);
-      this.cartedProducts.splice(this.cartedProducts.indexOf(product), 1);
+     this.DeleteFromCart(product);
     }
     else {
       this.productAmount[this.cartedProducts.indexOf(product)]--;
@@ -40,5 +39,4 @@ export class CartService {
   GetProductAmount(product: Produkt): number {
     return this.productAmount[this.cartedProducts.indexOf(product)];
   }
-
 }

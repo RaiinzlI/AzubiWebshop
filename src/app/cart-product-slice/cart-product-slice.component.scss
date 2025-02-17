@@ -2,8 +2,8 @@
     height: 150px;
     max-height: 150px;
 
-    width: 600px;
-    max-width: 600px;
+    width: 652px;
+    max-width: 652px;
 
     border-radius: 10px;
     border-width: 2px;
@@ -43,21 +43,24 @@
         }
 
         #product-price {
-            font-size: 1.2vw;
-            margin: 10px 0 0 0;
+            font-size: .8vw;
+            margin: 10px 10px 0 0px;
 
+            font-variant: small-caps;
+
+            justify-self: right;
             grid-column: 3;
             grid-row: 1;
 
             color: #4CAF50;
         }
 
-        #product-remove{
+        #product-remove {
             grid-column: 1;
             grid-row: 3;
         }
 
-        #delete-btn-pos{
+        #delete-btn-pos {
             grid-column: 1;
             grid-row: 3;
         }
@@ -67,8 +70,8 @@
             grid-row: 3;
             grid-column: 3;
 
-            display:grid;
-            grid-template-columns: 1fr 1fr 1fr;  
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
 
             #product-amount {
                 grid-column: 2;
@@ -79,23 +82,33 @@
                 align-self: center;
             }
 
-            #add-btn-pos{
+            #add-btn-pos {
                 grid-column: 3;
                 grid-row: 1;
             }
 
-            #remove-btn-pos{
+            #remove-btn-pos {
                 grid-column: 1;
                 grid-row: 1;
             }
         }
 
-        .cart-button-style {
+        .amount-button-style {
             background-color: transparent;
             border: 0;
-        
 
-          
+            min-width: 20px;
+            min-height: 20px;
+            max-width: 80px;
+            max-height: 80px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .bin-button-style {
+            background-color: transparent;
+            border: 0;
+
             min-width: 20px;
             min-height: 20px;
             max-width: 80px;
@@ -103,10 +116,30 @@
             cursor: pointer;
             border-radius: 5px;
 
-            .doubleCart-icon {
-                max-width: 2rem;
-                max-height: 2rem;
+            &:hover .button-icon {
+                animation: shake 0.3s ease-in-out;
             }
         }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            30% {
+                transform: translateX(1px);
+            }
+            70% {
+                transform: translateX(-1px);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        .button-icon {
+            max-width: 2rem;
+            max-height: 2rem;
+        }
+
     }
 }

@@ -3,6 +3,8 @@ export enum ProductType {
   runningSneaker = "Running Sneaker",
   walkingSneaker = "Walking Sneaker",
   hikingSneaker = "Hiking Sneaker",
+  pullover = "Pullover",
+  hoodie = "Hoodie"
 }
 
 export interface Produkt {

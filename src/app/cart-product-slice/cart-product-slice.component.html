@@ -6,17 +6,17 @@
         <div id="product-name">{{produkt.titel}}</div>
         <div id="product-price">{{produkt.preis}} €</div>
 
-        <button id="delete-btn-pos" class="cart-button-style" (click)="DeleteFromCart()">
-            <img src="w-recycle-bin.png" alt="" class="doubleCart-icon" />
+        <button id="delete-btn-pos" class="bin-button-style" (click)="DeleteFromCart()">
+            <img src="w-recycle-bin.png" alt="" class="button-icon" />
         </button>        
 
         <div id="amount-box">
             <div id="product-amount">{{itemAmount}}</div>
-            <button id="add-btn-pos" class="cart-button-style" (click)="AddToCart()">
-                <img src="w-add-button.png" alt="" class="doubleCart-icon" />
+            <button id="add-btn-pos" class="amount-button-style" (click)="AddToCart()">
+                <img src="w-add-button.png" alt="" class="button-icon" />
             </button>
-            <button id="remove-btn-pos" class="cart-button-style" (click)="RemoveFromCart()">
-                <img src="w-remove-button.png" alt="" class="doubleCart-icon" />
+            <button id="remove-btn-pos" class="amount-button-style" (click)="RemoveFromCart()">
+                <img src="w-remove-button.png" alt="" class="button-icon" />
             </button>
         </div>
     </div>
