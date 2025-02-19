@@ -4,22 +4,16 @@ import { Produkt } from '../product-card/product-interface';
 
 @Injectable({ providedIn: 'root' })
 export class CartService {
-  private productUpdateSubject = new BehaviorSubject<Produkt | null>(null);   //
-  productUpdate$ = this.productUpdateSubject.asObservable();                  //Oberable welches die App Component überwacht
+  private productUpdateSubject = new BehaviorSubject<any>(null);  // oder `object`
+  productUpdate$ = this.productUpdateSubject.asObservable();
+  //Oberable welches die App Component überwacht
 
   cartedProducts: Produkt[] = [];
   private productAmount: number[] = [];
 
   constructor() { }
 
-  DeleteFromCart(product: Produkt): void {
-    const index = this.cartedProducts.indexOf(product);
-    if (index !== -1) {
-      this.productAmount.splice(index, 1);
-      this.cartedProducts.splice(index, 1);
-      this.NotifyProductUpdate(product);
-    }
-  }
+
 
   AddToCart(product: Produkt): void {
     if (this.cartedProducts.includes(product)) {
@@ -43,6 +37,15 @@ export class CartService {
     }
   }
 
+  DeleteFromCart(product: Produkt): void {
+    const index = this.cartedProducts.indexOf(product);
+    if (index !== -1) {
+      this.productAmount.splice(index, 1);
+      this.cartedProducts.splice(index, 1);
+      this.NotifyProductUpdate(product, true);
+    }
+  }
+
   GetProductAmount(product: Produkt): number {
     return this.productAmount[this.cartedProducts.indexOf(product)];
   }
@@ -52,20 +55,22 @@ export class CartService {
     this.cartedProducts.forEach(product => {
       allProducts += this.productAmount[this.cartedProducts.indexOf(product)];
     });
-  
+
     if (allProducts === 0) {
       return '';
     }
-  
+
     if (allProducts >= 10) {
       return '9+';
     }
-  
+
     return allProducts.toString();
   }
-  
-  
-  private NotifyProductUpdate(product: Produkt): void {
-    this.productUpdateSubject.next(product);
+
+
+  private NotifyProductUpdate(product: Produkt, dellme: boolean = false): void {
+    console.log(product.titel)
+    console.log(this.productAmount)
+    this.productUpdateSubject.next({ product, dellme });
   }
 }

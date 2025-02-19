@@ -11,7 +11,7 @@
         </button>        
 
         <div id="amount-box">
-            <div id="product-amount">{{itemAmount}}</div>
+            <div id="product-amount">{{cartService.GetProductAmount(this.produkt)}}</div>
             <button id="add-btn-pos" class="amount-button-style" (click)="AddToCart()">
                 <img src="w-add-button.png" alt="" class="button-icon" />
             </button>

@@ -16,16 +16,12 @@ export class CartProductSliceComponent {
   @Input() produkt!: Produkt;
 
   constructor(
-    private cartService: CartService,
+    public cartService: CartService,
     private appComponent: AppComponent) { }
 
   isRemoving: boolean = true;
   itemAmount: number = 0;
 
-  ngOnInit() {
-    this.UpdateCart();
-    //wird nicht geupdated wenn man in einer produkt card wert ändert
-  }
 
   DeleteFromCart(): void {
     this.cartService.DeleteFromCart(this.produkt);
@@ -40,7 +36,6 @@ export class CartProductSliceComponent {
   }
 
   UpdateCart(): void {
-    this.itemAmount = this.cartService.GetProductAmount(this.produkt);
     this.appComponent.CalculateTotalMoney();
   }
 }

@@ -36,11 +36,12 @@ export class AppComponent {
 
   ngOnInit() {
     this.cartProducts = this.cartService.cartedProducts;
-      this.cartService.productUpdate$.subscribe((product) => {
-        if (product) {
-          this.UpdateProductComponents(product);
-        }
-      });
+    this.cartService.productUpdate$.subscribe(({ product, dellme }) => {
+      if (product) {
+        this.UpdateProductComponents(product, dellme);
+      }
+    });
+
   }
 
   toggleSidebar() {
@@ -54,11 +55,21 @@ export class AppComponent {
     });
   }
 
-  UpdateProductComponents(product: Produkt): void {
+  UpdateProductComponents(product: Produkt, dellme: boolean = false): void {
     const productSliceComp = this.productSliceComponents.find(comp => comp.produkt.id === product.id);
     const productCardComp = this.productCardComponents.find(comp => comp.produkt.id === product.id);
+
     if (productSliceComp) {
-      productSliceComp.UpdateCart();
+      if (dellme) {
+        const index = this.productSliceComponents.toArray().findIndex(comp => comp.produkt.id === product.id);
+        if (index !== -1) {
+          const updatedComponents = this.productSliceComponents.toArray().filter(comp => comp.produkt.id !== product.id);
+          this.productSliceComponents.reset(updatedComponents);
+          console.log("updated array")
+        }
+      }
+      this.productSliceComponents.forEach(x => x.UpdateCart());
+      
     } else {
       console.log(`Produkt mit ID ${product.id} nicht gefunden.`);
     }
