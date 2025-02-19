@@ -3,9 +3,13 @@ export enum ProductType {
   runningSneaker = "Running Sneaker",
   walkingSneaker = "Walking Sneaker",
   hikingSneaker = "Hiking Sneaker",
-  pullover = "Pullover",
-  hoodie = "Hoodie"
+  sweatshirt = "Sweatshirt",
+  hoodie = "Hoodie",
+  sunglasses = "Sunglasses",
+  jewelry = "Jewelry",
+  handbag = "Handbag"
 }
+
 
 export interface Produkt {
   id: string;

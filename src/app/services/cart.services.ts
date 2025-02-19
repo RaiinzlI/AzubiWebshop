@@ -47,6 +47,24 @@ export class CartService {
     return this.productAmount[this.cartedProducts.indexOf(product)];
   }
 
+  GetAllProductsAmount(): string {
+    let allProducts = 0;
+    this.cartedProducts.forEach(product => {
+      allProducts += this.productAmount[this.cartedProducts.indexOf(product)];
+    });
+  
+    if (allProducts === 0) {
+      return '';
+    }
+  
+    if (allProducts >= 10) {
+      return '9+';
+    }
+  
+    return allProducts.toString();
+  }
+  
+  
   private NotifyProductUpdate(product: Produkt): void {
     this.productUpdateSubject.next(product);
   }

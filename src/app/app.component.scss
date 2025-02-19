@@ -3,15 +3,33 @@ main {
   grid-template-areas:
     "header header header"
     "navigation produkte cart";
-  grid-template-rows: 80px 1fr;
+  grid-template-rows: auto 1fr;
   grid-template-columns: 204px 1fr auto; //213px 1fr auto
+
+  background-image: linear-gradient(to right, #676e72, #2e3435);
+
 
   height: 100vh;
 
   #header {
     grid-area: header;
 
+    text-align: center;
+    align-content: center;
+    font-size: 50px;
+    color: #ECEBF3;
+    font-family: 'Michroma', sans-serif;
+
     background-color: #414141;
+
+    border-width: 0 0 5px 0;
+    border-style: outset;
+    border-color: #6e767a;
+
+    padding: 10px 0 10px 0;
+
+
+    box-shadow: inset 0 -5px 5px rgba(0, 0, 0, 0.3);
   }
 
   #navigation {
@@ -23,21 +41,21 @@ main {
     display: grid;
     grid-template-rows: 10% auto 10% 10%;
 
-    background-color: #ECEBF3;
+    background-color: #4E5457;
 
 
     #nav-profile {
       grid-row: 1;
-      background-color: #797979;
-      border: 3px solid #414141;
+      background-color: transparent;
+      border-width: 0;
       border-radius: 0px;
+
       max-height: 100px;
       min-height: 100px;
 
       #user-icon {
         max-height: 80px;
         min-height: 80px;
-
       }
     }
 
@@ -47,20 +65,45 @@ main {
 
     #nav-historie {
       grid-row: 3;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
+      max-height: 100px;
+      min-height: 100px;
+
+      font-size: 20px;
+      font-family: 'Michroma', sans-serif;
     }
 
     #nav-logoutButton {
       grid-row: 4;
-      background-color: #797979;
-      border: 3px solid #414141;
+      background-color: transparent;
+      border-width: 0;
       border-radius: 0px;
+
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+
       max-height: 100px;
       min-height: 100px;
+
+      font-size: 20px;
+      font-family: 'Michroma', sans-serif;
 
       &:hover {
         background-color: #4646463d;
       }
     }
+
+
+    box-shadow: inset 0 5px 10px #414141;
   }
 
   #produkte {
@@ -72,18 +115,18 @@ main {
     overflow-y: auto;
     scrollbar-width: none;
 
-    border-width: 3px;
+    border-width: 0;
     border-style: solid;
     border-color: #202020;
 
-    background-color: #4E5457;
+    box-shadow: inset 0 0px 20px rgb(0, 0, 0);
 
     #open-cart-button {
       position: absolute;
       top: 0px;
       right: 0px;
 
-      margin: 100px 20px 0 0;
+      margin: 105px 20px 0 0;
 
       height: 100px;
       width: 100px;
@@ -98,23 +141,44 @@ main {
       z-index: 10;
 
       #cart-icon {
+        margin-top: 5px;
         width: 80px;
         height: 80px;
+      }
+
+      #product-amount {
+        position: absolute;
+        top: 22px;
+        left: 25px;
+
+        width: 40px;
+        height: 40px;
+
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        font-weight: bold;
       }
 
       @keyframes pulsatingBorder {
         0% {
           border-color: #ac0909;
+          color: #ac0909;
           background-color: #ECEBF3;
         }
-  
+
         50% {
           border-color: #4E5457;
+          color: #4E5457;
           background-color: #E4E4EB;
         }
-  
+
         100% {
           border-color: #ac0909;
+          color: #ac0909;
           background-color: #ECEBF3;
         }
       }
@@ -133,57 +197,76 @@ main {
     transition: width 0.07s ease-in-out;
     overflow: hidden;
 
-    background-color: #6e767a;
+    border-width: 0px;
+    border-style: solid;
+    border-color: #202020;
 
     &.expanded {
       width: 667px;
       border-width: 0 0 0 5px;
     }
-    
+
     #close-cart-button {
       grid-row: 1;
       border-style: solid;
-      border-width: 3px 0 2px 0;
-      background-color: #4E5457 ;
+      border-width: 0 2px 2px 2px;
+      border-radius: 0 0 30px 30px;
+      background-color: #4E5457;
       width: 100%;
       height: 100px;
-      position: relative; 
+      position: relative;
       overflow: hidden;
 
       color: #E4E4EB;
       font-size: 30px;
+      font-family: 'Michroma', sans-serif;
+
+      box-shadow: inset 0 -10px 20px rgba(0, 0, 0, 0.3);
+
+      margin-bottom: 5px;
     }
-    
+
     #close-cart-button::after {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%; 
-      width: 100%; 
-      height: 100%; 
-      background: linear-gradient(
-        135deg, 
-        rgba(255, 255, 255, 0) 20%,
-        rgba(255, 255, 255, 0.103) 50%, 
-        rgba(255, 255, 255, 0) 80% 
-      );
-      animation: shimmer 16s infinite; 
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg,
+          rgba(255, 255, 255, 0) 20%,
+          rgba(255, 255, 255, 0.103) 50%,
+          rgba(255, 255, 255, 0) 80%);
+      animation: shimmer 8s infinite;
       z-index: 1;
     }
-    
+
     @keyframes shimmer {
       0% {
         left: -100%;
       }
+
       100% {
         left: 100%;
       }
     }
-    
-
 
     #cartProductSlices {
       grid-row: 2;
+      position: relative;
+
+      #empty-cart {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        color: rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+        font-weight: bold;
+        text-transform: uppercase;
+        user-select: none;
+      }
 
       display: flex;
       flex-direction: column;
@@ -195,10 +278,12 @@ main {
       scrollbar-width: none;
 
       align-items: center;
+
     }
 
     #cartInfo {
       grid-row: 3;
+      margin-top: 20px;
 
       #cartLine {
         border-width: 1px;
@@ -211,14 +296,14 @@ main {
 
         border-style: solid;
 
-        border-color: #202020;
+        border-color: #E4E4EB;
       }
 
       #cartTotal {
         margin-right: 20px;
         justify-self: right;
         font-size: 30px;
-        height: 300px;
+        height: 250px;
 
         color: white;
       }

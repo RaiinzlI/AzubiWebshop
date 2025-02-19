@@ -27,6 +27,7 @@ export class AppComponent {
   cartProducts: Produkt[] = [];
 
   totalMoneyAmount: number = 0;
+  productamount: number = 0;
 
 
   cartService: CartService = inject(CartService);

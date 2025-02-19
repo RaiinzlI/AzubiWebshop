@@ -1,5 +1,5 @@
 <main>
-  <div id="header"></div>
+  <div id="header">AzubiWebshop</div>
   <div id="navigation">
     <button id="nav-profile">
       <img src="photo.png" alt="" id="user-icon" />
@@ -16,6 +16,9 @@
 
     <button id="open-cart-button" (click)="toggleSidebar()" [hidden]="isExpanded">
       <img src="cart.png" alt="" id="cart-icon" />
+      <div id="product-amount" *ngIf="cartService.GetAllProductsAmount()">
+        {{ cartService.GetAllProductsAmount() }}
+      </div>  
     </button>
 
     @for(product of allProducts; track $index) {
@@ -27,6 +30,10 @@
   <div id="cart" [class.expanded]="isExpanded">
     <button id="close-cart-button" (click)="toggleSidebar()">Warenkorb schließen</button>
     <div id="cartProductSlices" *ngIf="isExpanded">
+      <div id="empty-cart" *ngIf="!cartService.GetAllProductsAmount()">
+        Keine Produkte
+      </div> 
+
       @for(product of cartProducts; track $index) {
       <app-cart-product-slice [produkt]="product" />
       }
