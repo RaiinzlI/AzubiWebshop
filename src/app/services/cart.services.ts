@@ -28,10 +28,10 @@ export class CartService {
   RemoveFromCart(product: Produkt): void {
     const index = this.cartedProducts.indexOf(product);
     if (this.productAmount[index] === 1) { //Wenn ein produkt übrig => aus listen löschen
-      console.log("lösche das produkt") //DEBUG
+      //console.log("lösche das produkt") //DEBUG
       this.DeleteFromCart(product);
     } else {
-      console.log("entferne ein produkt") //DEBUG
+      //console.log("entferne ein produkt") //DEBUG
       this.productAmount[index]--;
       this.NotifyProductUpdate(product);
     }
@@ -69,8 +69,8 @@ export class CartService {
 
 
   private NotifyProductUpdate(product: Produkt, dellme: boolean = false): void {
-    console.log(product.titel)
-    console.log(this.productAmount)
+    //console.log(product.titel)
+    //console.log(this.productAmount)
     this.productUpdateSubject.next({ product, dellme });
   }
 }

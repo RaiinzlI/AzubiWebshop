@@ -1,47 +1,60 @@
 <main>
   <div id="header">AzubiWebshop
-    <button id="open-cart-button" (click)="toggleSidebar()" [hidden]="isExpanded">
+    <button id="open-cart-button" (click)="ToggleSidebar()" *ngIf="!isExpanded">
+      <div id="cart-text">Warenkorb öffnen</div>
       <img src="cart.png" alt="" id="cart-icon" />
       <div id="product-amount" *ngIf="cartService.GetAllProductsAmount()">
         {{ cartService.GetAllProductsAmount() }}
-      </div>  
+      </div>
     </button>
   </div>
+
   <div id="navigation">
     <button id="nav-profile">
       <img src="photo.png" alt="" id="user-icon" />
     </button>
     <div id="nav-filters">
-      <!--@for(type of schuhArtenArray.controls; track $index) {
-      <app-product-filter [productType]="type"></app-product-filter> }-->
+      @for(type of productTypesArray; track $index) {
+      <app-product-filter [productType]="type" (checkboxChanged)="OnCheckboxChanged($event)">></app-product-filter> }
     </div>
-    <div id="nav-historie">Einkäufe</div>
+    <div id="nav-bottom-content">
+      <button id="nav-apply-filters" (click)="UpdateFilteredProducts()">Apply Filters
+      </button>
+      <div id="nav-historie">Einkäufe</div>
+    </div>
     <div id="nav-logoutButton"> <img src="w-close.png" alt="" id="close-icon" /></div>
   </div>
 
-  <div id="produkte">
-    <div id="empty-products" *ngIf="!allProducts">
-      Keine Produkte gefunden
-    </div>
-    @for(product of allProducts; track $index) {
-    <app-product-card [produkt]="product" />
-    }
+
+  <div class="products">
+  <div id="empty-products" *ngIf="filteredProducts.length === 0">
+    Keine Produkte gefunden
   </div>
+
+  <div
+    class="product-card"
+    *ngFor="let product of filteredProducts; let i = index"
+    [ngClass]="{ 'fade-in': !isFading }"
+    [ngStyle]="{ 'animation-delay': getDelay(i) }" 
+  >
+    <app-product-card [produkt]="product"></app-product-card>
+  </div>
+</div>
 
 
   <div id="cart" [class.expanded]="isExpanded">
-    <button id="close-cart-button" (click)="toggleSidebar()">Warenkorb schließen</button>
+    <button id="close-cart-button" (click)="ToggleSidebar()">Warenkorb schließen</button>
     <div id="cartProductSlices" *ngIf="isExpanded">
       <div id="empty-cart" *ngIf="!cartService.GetAllProductsAmount()">
         Noch keine Produkte
-      </div> 
-      @for(product of cartProducts; track $index) {
+      </div>
+      @for(product of cartedProducts; track $index) {
       <app-cart-product-slice [produkt]="product" />
       }
     </div>
     <div id="cartInfo">
       <div id="cartLine"></div>
-      <div id="cartTotal">Gesamt: {{ totalMoneyAmount | number:'1.2-2' }}€</div>
+      <div id="cartTotal">Gesamt: {{ CalculateTotalMoney() | number:'1.2-2' }}€</div>
     </div>
   </div>
 </main>

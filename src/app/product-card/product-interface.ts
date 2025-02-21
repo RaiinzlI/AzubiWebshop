@@ -1,13 +1,11 @@
 export enum ProductType {
-  sportSneaker = "Sport Sneaker",
-  runningSneaker = "Running Sneaker",
-  walkingSneaker = "Walking Sneaker",
-  hikingSneaker = "Hiking Sneaker",
-  sweatshirt = "Sweatshirt",
-  hoodie = "Hoodie",
+  sneaker = "Sneakers",
+  sweatshirt = "Sweatshirts",
+  hoodie = "Hoodies",
   sunglasses = "Sunglasses",
   jewelry = "Jewelry",
-  handbag = "Handbag"
+  handbag = "Handbags",
+  tshirt = "T-Shirts"
 }
 
 

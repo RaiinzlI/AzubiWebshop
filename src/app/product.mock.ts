@@ -8,7 +8,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Bequeme und stylische Sportschuhe.',
     bildUrl: "productPictures/sneaker1.jpeg",
     preis: 89.99,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -16,7 +16,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Perfekt für jedes Workout.',
     bildUrl: "productPictures/sneaker2.jpeg",
     preis: 79.99,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -24,7 +24,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Modischer Sneaker für jeden Tag.',
     bildUrl: "productPictures/sneaker3.jpeg",
     preis: 109.99,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -32,7 +32,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Funktional und komfortabel.',
     bildUrl: "productPictures/sneaker4.jpeg",
     preis: 99.99,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -40,7 +40,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Schneller Style mit viel Komfort.',
     bildUrl: "productPictures/sneaker5.jpeg",
     preis: 95.00,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -48,7 +48,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Schlichter Sport-Sneaker.',
     bildUrl: "productPictures/sneaker6.jpeg",
     preis: 89.99,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -56,7 +56,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Perfekter Sneaker für sportliche Aktivitäten.',
     bildUrl: "productPictures/sneaker7.jpeg",
     preis: 120.00,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -64,7 +64,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Sportlich und trendy zugleich.',
     bildUrl: "productPictures/sneaker8.jpeg",
     preis: 79.99,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -72,7 +72,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Der Sneaker für jedes Abenteuer.',
     bildUrl: "productPictures/sneaker9.jpeg",
     preis: 100.00,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
   {
     id: crypto.randomUUID(),
@@ -80,7 +80,7 @@ export const productMock: Produkt[] = [
     beschreibung: 'Leichter Sneaker für den Alltag.',
     bildUrl: "productPictures/sneaker10.jpeg",
     preis: 90.00,
-    productType: ProductType.sportSneaker,
+    productType: ProductType.sneaker,
   },
 
   // Brillen

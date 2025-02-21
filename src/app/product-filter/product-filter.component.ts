@@ -1,6 +1,5 @@
-import { Component, Input, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ProductType } from '../product-card/product-interface';
-import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-product-filter',
@@ -8,7 +7,14 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./product-filter.component.scss']
 })
 export class ProductFilterComponent {
-  @Input() productType: ProductType = ProductType.sportSneaker; // ? 
+  @Input() productType!: ProductType;
 
-  
+  @Output() checkboxChanged = new EventEmitter<{ checked: boolean, productType: ProductType }>();
+
+  checkValue(event: Event, productType: ProductType) {
+  const checkbox = event.target as HTMLInputElement;
+  console.log('Product Type:', productType);  // Überprüfe, ob der productType hier verfügbar ist
+  this.checkboxChanged.emit({ checked: checkbox.checked, productType: productType });
+}
+
 }
