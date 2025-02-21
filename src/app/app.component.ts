@@ -1,4 +1,4 @@
-import { Component, inject, ViewChildren, QueryList, OnInit, numberAttribute } from '@angular/core';
+import { Component, inject, ViewChildren, QueryList, OnInit, numberAttribute, booleanAttribute } from '@angular/core';
 import { CommonModule, DecimalPipe } from '@angular/common';
 
 import { Produkt, ProductType } from './product-card/product-interface';
@@ -51,16 +51,25 @@ export class AppComponent {
   }
 
   OnCheckboxChanged(eventData: { checked: boolean, productType: ProductType }) {
-    console.log('Checkbox Status:', eventData.checked);
-
     const index = this.productTypesArray.indexOf(eventData.productType);
 
     if (index !== -1) {
       this.productTypeBooleans[index] = eventData.checked;
     }
+
+    const trueCount = this.productTypeBooleans.reduce((count, value) => value === true ? count + 1 : count, 0);
+
+    if (trueCount === this.productTypeBooleans.length && eventData.checked) {
+      this.productTypeBooleans = this.productTypeBooleans.map(() => false);
+      this.productTypeBooleans[index] = eventData.checked;
+    }
+
+    if (trueCount === 0)
+      this.productTypeBooleans = this.productTypeBooleans.map(() => true);
+
   }
 
-  UpdateFilteredProducts(): void { //schlechte lösung //Animation eventuell nervig
+  UpdateFilteredProducts(): void {                    //schlechte lösung          //Animation eventuell nervig          //cards udpdaten nicht !!!!
     this.filteredProducts.length = 0;
     setTimeout(() => { //anim
       this.allProducts.forEach(product => {
@@ -75,18 +84,6 @@ export class AppComponent {
   getDelay(index: number): string { //anim
     return `${index * 0.04}s`;
   }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   //======================================
@@ -120,7 +117,7 @@ export class AppComponent {
       this.productSliceComponents.forEach(x => x.UpdateCart());
 
     } else {
-      console.log(`Produkt mit ID ${product.id} nicht gefunden.===================`);
+      console.log(`Produkt mit ID ${product.id} nicht gefunden.`);
     }
 
     if (productCardComp) {

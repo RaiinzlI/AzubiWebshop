@@ -1,6 +1,6 @@
 <div id="filter-container">
   <label class="custom-checkbox">
-    <input id="filter-checkbox" type="checkbox" checked (change)="checkValue($event, productType)" />
+    <input id="filter-checkbox" type="checkbox" (change)="checkValue($event, productType)" />
     <span class="checkbox-icon"></span>
     <div id="filter-title">{{ productType }}</div>
   </label>

@@ -1,5 +1,10 @@
 <main>
   <div id="header">AzubiWebshop
+
+
+  </div>
+
+  <div id="navigation">
     <button id="open-cart-button" (click)="ToggleSidebar()" *ngIf="!isExpanded">
       <div id="cart-text">Warenkorb öffnen</div>
       <img src="cart.png" alt="" id="cart-icon" />
@@ -7,19 +12,15 @@
         {{ cartService.GetAllProductsAmount() }}
       </div>
     </button>
-  </div>
-
-  <div id="navigation">
     <button id="nav-profile">
-      <img src="photo.png" alt="" id="user-icon" />
+      <img src="w-photo.png" alt="" id="user-icon" />
     </button>
     <div id="nav-filters">
       @for(type of productTypesArray; track $index) {
       <app-product-filter [productType]="type" (checkboxChanged)="OnCheckboxChanged($event)">></app-product-filter> }
     </div>
     <div id="nav-bottom-content">
-      <button id="nav-apply-filters" (click)="UpdateFilteredProducts()">Apply Filters
-      </button>
+      <button id="nav-apply-filters" (click)="UpdateFilteredProducts()">Apply Filters</button>
       <div id="nav-historie">Einkäufe</div>
     </div>
     <div id="nav-logoutButton"> <img src="w-close.png" alt="" id="close-icon" /></div>
@@ -27,19 +28,15 @@
 
 
   <div class="products">
-  <div id="empty-products" *ngIf="filteredProducts.length === 0">
-    Keine Produkte gefunden
-  </div>
+    <div id="empty-products" *ngIf="filteredProducts.length === 0">
+      Keine Produkte gefunden
+    </div>
 
-  <div
-    class="product-card"
-    *ngFor="let product of filteredProducts; let i = index"
-    [ngClass]="{ 'fade-in': !isFading }"
-    [ngStyle]="{ 'animation-delay': getDelay(i) }" 
-  >
-    <app-product-card [produkt]="product"></app-product-card>
+    <div class="product-card" *ngFor="let product of filteredProducts; let i = index"
+      [ngClass]="{ 'fade-in': !isFading }" [ngStyle]="{ 'animation-delay': getDelay(i) }">
+      <app-product-card [produkt]="product"></app-product-card>
+    </div>
   </div>
-</div>
 
 
   <div id="cart" [class.expanded]="isExpanded">
@@ -49,7 +46,7 @@
         Noch keine Produkte
       </div>
       @for(product of cartedProducts; track $index) {
-      <app-cart-product-slice [produkt]="product" />
+      <app-cart-product-slice [produkt]="product"/>
       }
     </div>
     <div id="cartInfo">

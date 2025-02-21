@@ -5,7 +5,8 @@ export enum ProductType {
   sunglasses = "Sunglasses",
   jewelry = "Jewelry",
   handbag = "Handbags",
-  tshirt = "T-Shirts"
+  tshirt = "T-Shirts",
+  perfume = "Perfume"
 }
 
 
@@ -16,4 +17,6 @@ export interface Produkt {
   beschreibung: string;
   preis: number;
   productType: ProductType;
+
+ // isFiltered: boolean;
 }
