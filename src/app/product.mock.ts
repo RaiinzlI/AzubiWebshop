@@ -191,10 +191,10 @@ export const productMock: Produkt[] = [
   {
     id: crypto.randomUUID(),
     titel: "Parfüm 1",
-    beschreibung: '-',
+    beschreibung: 'Duft des Ozean',
     bildUrl: "productPictures/perfume2.jpeg",
     preis: 79.99,
-    productType: ProductType.handbag,
+    productType: ProductType.perfume,
   },
   {
     id: crypto.randomUUID(),
@@ -202,6 +202,68 @@ export const productMock: Produkt[] = [
     beschreibung: '-',
     bildUrl: "productPictures/perfume1.jpeg",
     preis: 89.99,
-    productType: ProductType.handbag,
+    productType: ProductType.perfume,
+  },
+  {
+    id: crypto.randomUUID(),
+    titel: "Parfüm 3",
+    beschreibung: '-',
+    bildUrl: "productPictures/perfume3.jpeg",
+    preis: 89.99,
+    productType: ProductType.perfume,
+  },
+  {
+    id: crypto.randomUUID(),
+    titel: "Parfüm 4",
+    beschreibung: 'Gutes Parfüm',
+    bildUrl: "productPictures/perfume4.jpeg",
+    preis: 79.99,
+    productType: ProductType.perfume  ,
+  },
+
+  //TShirts
+  {
+    id: crypto.randomUUID(),
+    titel: "T-Shirt 1",
+    beschreibung: 'Stylisches T-Shirt',
+    bildUrl: "productPictures/tshirt1.jpeg",
+    preis: 19.99, 
+    productType: ProductType.tshirt,
+  },
+  
+  {
+    id: crypto.randomUUID(),
+    titel: "T-Shirt 2",
+    beschreibung: 'Bequem und modern',
+    bildUrl: "productPictures/tshirt2.jpeg",
+    preis: 24.99, 
+    productType: ProductType.tshirt,
+  },
+  
+  {
+    id: crypto.randomUUID(),
+    titel: "T-Shirt 3",
+    beschreibung: 'Perfekt für den Sommer',
+    bildUrl: "productPictures/tshirt3.jpeg",
+    preis: 22.49, 
+    productType: ProductType.tshirt,
+  },
+  
+  {
+    id: crypto.randomUUID(),
+    titel: "T-Shirt 4",
+    beschreibung: 'Klassisch und komfortabel',
+    bildUrl: "productPictures/tshirt4.jpeg",
+    preis: 29.99, 
+    productType: ProductType.tshirt,
+  },
+  
+  {
+    id: crypto.randomUUID(),
+    titel: "T-Shirt 5",
+    beschreibung: 'Trendiges Design',
+    bildUrl: "productPictures/tshirt5.jpeg",
+    preis: 18.99,
+    productType: ProductType.tshirt,
   },
 ];
