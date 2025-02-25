@@ -30,13 +30,14 @@ export class AppComponent {
 
   productTypesArray: ProductType[] = Object.values(ProductType);
   productTypeBooleans: boolean[] = new Array(this.productTypesArray.length).fill(true);
+  //productTypeVisibilities: boolean[] = new Array(this.productTypesArray.length).fill(false);
 
   cartService: CartService = inject(CartService);
 
   isExpanded: boolean = false;
 
-  isFading = false; // Steuert die Animation
-  fadeIn = true; // Steuert das Ein- oder Ausblenden
+  isFading = false; 
+  fadeIn = true;
 
   ngOnInit() {
     this.cartedProducts = this.cartService.cartedProducts;
@@ -69,7 +70,7 @@ export class AppComponent {
 
   }
 
-  UpdateFilteredProducts(): void {                    //schlechte lösung          //Animation eventuell nervig          //cards udpdaten nicht !!!!
+  UpdateFilteredProducts(): void {    //cards udpdaten noch nicht
     this.filteredProducts.length = 0;
     setTimeout(() => { //anim
       this.allProducts.forEach(product => {
@@ -85,7 +86,6 @@ export class AppComponent {
     return `${index * 0.04}s`;
   }
 
-
   //======================================
 
   ToggleSidebar() {
@@ -100,7 +100,6 @@ export class AppComponent {
     return totalMoneyAmount;
   }
 
-
   UpdateProductComponents(product: Produkt, dellme: boolean = false): void {
     const productSliceComp = this.productSliceComponents.find(comp => comp.produkt.id === product.id);
     const productCardComp = this.productCardComponents.find(comp => comp.produkt.id === product.id);
@@ -111,19 +110,45 @@ export class AppComponent {
         if (index !== -1) {
           const updatedComponents = this.productSliceComponents.toArray().filter(comp => comp.produkt.id !== product.id);
           this.productSliceComponents.reset(updatedComponents);
-          //console.log("updated array")
         }
       }
       this.productSliceComponents.forEach(x => x.UpdateCart());
 
     } else {
-      console.log(`Produkt mit ID ${product.id} nicht gefunden.`);
+      console.log(`Productslice mit ID ${product.id} nicht gefunden.`);
     }
 
     if (productCardComp) {
       productCardComp.UpdateCart();
     } else {
-      console.log(`Produkt mit ID ${product.id} nicht gefunden.`);
+      console.log(`Productcomp mit ID ${product.id} nicht gefunden.`);
     }
   }
 }
+
+
+
+
+
+
+//=== Produkt filter 
+// UpdateFilteredProducts(): void {     
+  //   setTimeout(() => {
+  //     this.productTypesArray.forEach((_, index) => {
+  //       this.productTypeVisibilities[index] = this.productTypeBooleans[index] ? true : false;
+  //     });
+  //   }, 50); //anim
+  // }
+
+  // getDelay(index: number): string { //anim
+  //   return `${index * 0.04}s`;
+  // }
+
+  //     <div class="product-card" *ngFor="let product of allProducts; let i = index"
+  //     [ngClass]="{ 'fade-in': !isFading }" 
+  //     [ngStyle]="{ 'animation-delay': getDelay(i) }"
+  //     [hidden]="!productTypeVisibilities[productTypesArray.indexOf(product.productType)]">
+  //     <app-product-card [produkt]="product" id="prod-comp"
+  //     ></app-product-card>
+  //   </div>
+  // </div>

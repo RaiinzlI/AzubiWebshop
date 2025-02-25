@@ -1,11 +1,11 @@
-import { DecimalPipe } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { CartService } from '../services/cart.services';
 import { Produkt } from './product-interface';
 import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-product-card',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss',
 })
@@ -13,30 +13,42 @@ export class ProductCardComponent {
   @Input() produkt!: Produkt;
 
   constructor(
-    private cartService: CartService,
+    protected cartService: CartService,
     private appComponent: AppComponent ) { }
 
   setCartsInvisible: boolean = true;
-  itemAmount: number = 0;
+  productAmount: number = 0;
 
-  AddToCart(): void {
-    this.cartService.AddToCart(this.produkt);
-    this.UpdateCart();
+  ngOnInit() {
+    this.UpdateProductAmount();
   }
 
-  RemoveFromCart(): void {
+  UpdateProductAmount() {
+    this.productAmount = this.cartService.GetProductAmount(this.produkt) ?? 0;
+  }
+
+  AddToCart() {
+    this.cartService.AddToCart(this.produkt);
+    this.UpdateProductAmount();
+  }
+
+  RemoveFromCart() {
     this.cartService.RemoveFromCart(this.produkt);
-    this.UpdateCart();
+    this.UpdateProductAmount();
   }
 
   UpdateCart(): void {
-    this.itemAmount = this.cartService.GetProductAmount(this.produkt);
     this.appComponent.CalculateTotalMoney();
+    this.UpdateProductAmount();
+  }
 
+  
 
-    if (this.itemAmount >= 0)
-      this.setCartsInvisible = false;
-    else
-      this.setCartsInvisible = true;
+  PreviousImg(): void{
+
+  }
+
+  NextImg(): void{
+    
   }
 }

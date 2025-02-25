@@ -1,8 +1,5 @@
 <main>
-  <div id="header">AzubiWebshop
-
-
-  </div>
+  <div id="header">AzubiWebshop</div>
 
   <div id="navigation">
     <button id="open-cart-button" (click)="ToggleSidebar()" *ngIf="!isExpanded">
@@ -27,14 +24,14 @@
   </div>
 
 
-  <div class="products">
+  <div id="products">
     <div id="empty-products" *ngIf="filteredProducts.length === 0">
       Keine Produkte gefunden
     </div>
 
     <div class="product-card" *ngFor="let product of filteredProducts; let i = index"
       [ngClass]="{ 'fade-in': !isFading }" [ngStyle]="{ 'animation-delay': getDelay(i) }">
-      <app-product-card [produkt]="product"></app-product-card>
+      <app-product-card [produkt]="product" id="prod-comp"></app-product-card>
     </div>
   </div>
 

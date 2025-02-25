@@ -13,7 +13,7 @@ export enum ProductType {
 export interface Produkt {
   id: string;
   titel: string;
-  bildUrl: string;
+  bildUrl: string[];
   beschreibung: string;
   preis: number;
   productType: ProductType;
